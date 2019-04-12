@@ -1,0 +1,35 @@
+package br.com.ex1.rest;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+
+@Path("/json")
+public class JSONPessoa {
+	
+	@GET
+	@Path("/get")
+	@Produces("application/json")
+	public Pessoa getProductInJSON(){
+		
+		Pessoa pessoa = new Pessoa();
+		pessoa.setNome("Alexia");
+		//pessoa.setIdade(22);
+		//pessoa.setLp("C#");
+		//pessoa.setAltura((float) 1.67);
+		//pessoa.setPeso(58);
+		
+		return pessoa;
+	}
+	
+	@POST
+	@Path("/post")
+	@Consumes("application/json")
+	public Response createPessoaInJSON(Pessoa pessoa){
+		String result=" Product created : "+pessoa;
+		return Response.status(201).entity(result).build();
+	}
+}

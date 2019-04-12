@@ -1,0 +1,46 @@
+package br.com.ex1.rest;
+
+import java.text.DecimalFormat;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+
+@Path("/json")
+public class JSONPessoa {
+	
+	@GET
+	@Path("/get")
+	@Produces("application/json")
+	public void  getProductInJSON(){
+		
+		DecimalFormat df = new DecimalFormat("00.00");
+		Pessoa pessoa = new Pessoa();
+		
+		pessoa.setNome("Alexia");
+		pessoa.setIdade(22);
+		pessoa.setLp("C#");
+		pessoa.setAltura(1.67);
+		pessoa.setPeso(58);
+		
+        System.out.println("\n\n\nEu " + pessoa.getNome() +" ,trabalho e estudo, tenho " + pessoa.getIdade() + " anos,"
+			    + " e adoro programar em " + pessoa.getLp());
+		
+		System.out.println("\n Eu tenho " + pessoa.getAltura() + " de altura e tenho " + pessoa.getPeso() + " Kg"
+				+" e meu IMC: "+df.format(pessoa.getPeso()/(pessoa.getAltura()*pessoa.getAltura()))+ " do Peso");
+				
+	}
+	
+	
+	
+	@POST
+	@Path("/post")
+	@Consumes("application/json")
+	public Response createPessoaInJSON(Pessoa pessoa){
+		String result=" Product created : \n\n"+pessoa;
+		return Response.status(201).entity(result).build();
+	}
+}

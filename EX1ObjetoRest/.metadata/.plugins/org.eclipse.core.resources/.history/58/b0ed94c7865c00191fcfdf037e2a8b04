@@ -1,0 +1,9 @@
+package br.com.ex1.rest;
+
+public class Pessoa {
+
+	public Pessoa() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

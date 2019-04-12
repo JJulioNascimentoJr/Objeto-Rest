@@ -1,0 +1,5 @@
+package br.com.ex1.rest;
+
+public class JSONPessoa {
+
+}

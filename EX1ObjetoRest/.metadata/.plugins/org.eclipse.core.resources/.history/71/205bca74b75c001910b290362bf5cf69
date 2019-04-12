@@ -1,0 +1,58 @@
+package br.com.ex1.rest;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+
+//http://localhost:8080/Ex1Rest/rest/ex1Rest/show/Thaisa/20/Java
+
+@Path("/ex1Rest")
+public class Ex1Rest {
+	
+	@GET
+	@Path("show/{param1}/{param2}/{param3}")
+	public String  show(@PathParam("param1")String nome,@PathParam("param2")int idade,@PathParam("param3")String prg) throws IOException{
+		String out="Eu "+nome+", trabalho e estudo, tenho "+idade+" anos"
+		            +" e adoro programar em "+prg;
+		
+		gravaStatus(out);
+		
+		return out;
+		
+	}
+	
+	@GET
+	@Path("imc/{param1}/{param2}")
+	public String imc(@PathParam("param1")float altura,@PathParam("param2")int kg) throws IOException{
+		
+		DecimalFormat df = new DecimalFormat("00.00");
+	
+		String imc="Eu tenho "+altura+" de altura e tenho "+kg+" Kg"
+				    +" e meu IMC: "+(kg/(altura*altura))+" do peso";
+		
+		gravaStatus(imc);
+		return imc;
+	}
+	
+	public void gravaStatus(String msg) throws IOException{
+		
+		 FileWriter arq = new FileWriter("C:/Documents and Settings/Juninho/SD/EX1ObjetoRest/Registro/registro.txt",true);
+	     PrintWriter gravarArq = new PrintWriter(arq);
+	     
+	       gravarArq.println(msg);
+	       gravarArq.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+	       gravarArq.println("");
+	       gravarArq.flush();
+	       gravarArq.close();
+            
+		
+	}
+	
+	
+
+}

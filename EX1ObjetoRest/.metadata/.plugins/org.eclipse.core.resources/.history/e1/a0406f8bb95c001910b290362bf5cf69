@@ -1,0 +1,31 @@
+package br.com.ex1.rest;
+
+
+
+@Path("/json")
+public class JSONPessoa {
+	
+	@GET
+	@Path("/get")
+	@Produces("application/json")
+	public Pessoa getProductInJSON(){
+		
+		Pessoa pessoa = new Pessoa();
+		
+		pessoa.setNome("Alexia");
+		pessoa.setIdade(22);
+		pessoa.setLp("C#");
+		pessoa.setAltura(1.67);
+		pessoa.setPeso(58);
+		
+		return pessoa;
+	}
+	
+	@POST
+	@Path("/post")
+	@Consumes("application/json")
+	public Response createPessoaInJSON(Pessoa pessoa){
+		String result=" Product created : \n\n"+pessoa;
+		return Response.status(201).entity(result).build();
+	}
+}
